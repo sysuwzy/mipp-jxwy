@@ -1,0 +1,14 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/my",
+    "pages/home",
+    "pages/healthPortrait",
+    "pages/editProfile",
+
+    "pages/DataManager/DMAddRecord",
+    "pages/DataManager/DMDetail",
+    "pages/DataManager/DMHome",
+    "pages/DataManager/Index"
+  ]
+}
