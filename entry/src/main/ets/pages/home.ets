@@ -7,7 +7,7 @@ import { UserProfileForm } from '../models/UserModel';
 
 @Entry
 @Component
-struct HomePage {
+export struct HomePage {
   @State healthData: HealthData | null = null;
   @State isLoading: boolean = true;
   @State currentTabIndex: number = 0;
@@ -36,95 +36,6 @@ struct HomePage {
     } finally {
       this.isLoading = false;
     }
-  }
-
-  // 用户信息卡片
-  @Builder
-  UserProfileCard() {
-    Column() {
-      Row() {
-        Text('首页')
-          .fontSize(18)
-          .fontWeight(FontWeight.Bold)
-          .fontColor(Color.White)
-          .layoutWeight(1)
-
-        Text('完善资料 >>')
-          .fontSize(14)
-          .fontColor(Color.White)
-          .opacity(0.9)
-          .onClick(() => {
-            this.promptAction.showToast({
-              message: '跳转到完善资料页面',
-              duration: 2000
-            });
-            this.router.pushUrl({
-              url: 'pages/editProfile'
-            });
-          })
-      }
-      .width('100%')
-      .padding({ left: 16, right: 16, top: 12, bottom: 12 })
-
-      if (this.healthData) {
-        Column() {
-          Row() {
-            // 头像
-            Image($r(this.userProfileForm.avatar))
-              .width(60)
-              .height(60)
-              .borderRadius(30)
-              .backgroundColor('#E0E0E0')
-              .alt($r('app.media.startIcon'))
-
-            // 用户信息
-            Column() {
-              Text(this.userProfileForm.name)
-                .fontSize(20)
-                .fontWeight(FontWeight.Bold)
-                .fontColor('#182431')
-                .margin({ bottom: 8 })
-
-              Row() {
-                Text(this.userProfileForm.gender)
-                  .fontSize(14)
-                  .fontColor('#666666')
-                Text(this.userProfileForm.birthday)
-                  .fontSize(14)
-                  .fontColor('#666666')
-                  .margin({ left: 12 })
-                Text(`${this.userProfileForm.height}cm`)
-                  .fontSize(14)
-                  .fontColor('#666666')
-                  .margin({ left: 12 })
-                Text(`${this.userProfileForm.weight}kg`)
-                  .fontSize(14)
-                  .fontColor('#666666')
-                  .margin({ left: 12 })
-              }
-
-              Text(this.userProfileForm.tags)
-                .fontSize(12)
-                .fontColor('#999999')
-                .margin({ top: 6 })
-            }
-            .alignItems(HorizontalAlign.Start)
-            .margin({ left: 16 })
-            .layoutWeight(1)
-          }
-          .width('100%')
-          .alignItems(VerticalAlign.Top)
-        }
-        .width('95%')
-        .backgroundColor(Color.White)
-        .borderRadius(12)
-        .padding(16)
-        .margin({ left: 16, right: 16, bottom: 12 })
-      }
-    }
-    .width('100%')
-    .backgroundColor('#5FCCC4')
-    .padding({ bottom: 12 })
   }
 
   // 健康画像卡片
@@ -416,112 +327,6 @@ struct HomePage {
     }
   }
 
-  // 底部导航栏
-  // @Builder
-  // BottomNavigation() {
-  //   Row() {
-  //     Column() {
-  //       Image($r('app.media.home_selected'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 0 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('首页')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 0 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       this.currentTabIndex = 0;
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.data'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 1 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('数据管理')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 1 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       this.currentTabIndex = 1;
-  //       promptAction.showToast({
-  //         message: '数据管理',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.health'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 2 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('健康档案')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 2 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       this.currentTabIndex = 2;
-  //       promptAction.showToast({
-  //         message: '健康档案',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.ai'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 3 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('AI问诊')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 3 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       this.currentTabIndex = 3;
-  //       promptAction.showToast({
-  //         message: 'AI问诊',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.mine'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 4 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('我的')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 4 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       this.currentTabIndex = 4;
-  //       promptAction.showToast({
-  //         message: '我的',
-  //         duration: 2000
-  //       });
-  //     })
-  //   }
-  //   .width('100%')
-  //   .height(56)
-  //   .backgroundColor(Color.White)
-  //   .border({ width: { top: 0.5 }, color: '#E5E5E5' })
-  // }
-
   // 绘制心率图表
   private drawHeartRateChart() {
     if (!this.healthData) return;
@@ -636,7 +441,6 @@ struct HomePage {
         } else {
           Scroll() {
             Column() {
-              // this.UserProfileCard()
               UserInfoCard({
                 userName: this.userProfileForm.name,
                 gender: this.userProfileForm.gender,
@@ -668,8 +472,6 @@ struct HomePage {
           .scrollBar(BarState.Off)
           .backgroundColor('#F5F5F5')
 
-          // 底部导航
-          // this.BottomNavigation()
         }
       }
       .width('100%')

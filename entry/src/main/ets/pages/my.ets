@@ -7,7 +7,7 @@ import { UserProfileForm } from '../models/UserModel';
 
 @Entry
 @Component
-struct ProfilePage {
+export struct ProfilePage {
   @State currentTabIndex: number = 4;
   @State appInfo: AppInfo | null = null;
   @State cardStyle: 'default' | 'compact' = 'compact';
@@ -114,14 +114,14 @@ struct ProfilePage {
           })
         }
 
-        Text('>>>点击查看AI健康画像<<<')
+        Text('>>> 点击查看AI健康画像 <<<')
           .fontSize(14)
           .fontColor('#5FCCC4')
           .fontWeight(FontWeight.Medium)
           .margin({ top: 8 })
           .onClick(()=>{
             this.router.pushUrl({
-              url: 'pages/home'
+              url: 'pages/healthPortrait'
             })
           })
       }
@@ -170,7 +170,7 @@ struct ProfilePage {
   @Builder
   LogoutButton() {
     Row() {
-      Image($r('app.media.arrow_to_right'))
+      Image($r('app.media.logout'))
         .width(20)
         .height(20)
         .fillColor('#666666')
@@ -198,103 +198,6 @@ struct ProfilePage {
     })
   }
 
-  // 底部导航栏
-  // @Builder
-  // BottomNavigation() {
-  //   Row() {
-  //     Column() {
-  //       Image($r('app.media.home'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 0 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('首页')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 0 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       router.replaceUrl({
-  //         url: 'pages/Index'
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.data'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 1 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('数据管理')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 1 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       promptAction.showToast({
-  //         message: '数据管理',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.health'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 2 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('健康档案')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 2 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       promptAction.showToast({
-  //         message: '健康档案',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.ai'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 3 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('AI问诊')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 3 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //     .onClick(() => {
-  //       promptAction.showToast({
-  //         message: 'AI问诊',
-  //         duration: 2000
-  //       });
-  //     })
-  //
-  //     Column() {
-  //       Image($r('app.media.mine_selected'))
-  //         .width(24)
-  //         .height(24)
-  //         .fillColor(this.currentTabIndex === 4 ? '#5FCCC4' : '#999999')
-  //
-  //       Text('我的')
-  //         .fontSize(12)
-  //         .fontColor(this.currentTabIndex === 4 ? '#5FCCC4' : '#999999')
-  //         .margin({ top: 4 })
-  //     }
-  //     .layoutWeight(1)
-  //   }
-  //   .width('100%')
-  //   .height(56)
-  //   .backgroundColor(Color.White)
-  //   .border({ width: { top: 0.5 }, color: '#E5E5E5' })
-  // }
 
   build() {
     // 主内容区域

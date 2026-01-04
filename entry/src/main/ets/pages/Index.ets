@@ -39,7 +39,7 @@ struct LoginPage {
         // 登录成功后跳转到主页
         setTimeout(() => {
           this.router.replaceUrl({
-            url: 'pages/home'
+            url: 'pages/ModuleRouter'
           });
         }, 1000);
       } else {
@@ -96,7 +96,7 @@ struct LoginPage {
 
         setTimeout(() => {
           this.router.replaceUrl({
-            url: 'pages/home'
+            url: 'pages/ModuleRouter'
           });
         }, 1000);
       } else {
@@ -180,7 +180,7 @@ struct LoginPage {
 
             Row() {
               Column() {
-                Image($r('app.media.keyboard'))
+                Image($r('app.media.loginWayIcon'))
                   .width(40)
                   .height(40)
                   .borderRadius(20)
