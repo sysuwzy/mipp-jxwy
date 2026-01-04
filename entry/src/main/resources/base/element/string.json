@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "reason_internet",
+      "value": "需要联网以连接AI健康管家提供建议"
+    },
+    {
+      "name": "reason_reminder",
+      "value": "需要权限以为您设置用药提醒和打卡闹钟"
     }
   ]
 }
