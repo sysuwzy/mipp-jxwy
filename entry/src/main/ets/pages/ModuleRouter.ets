@@ -1,6 +1,7 @@
 import { HomePage } from './home';
 import { ProfilePage } from './my';
 import { Index as ArchivePage } from './archive/Index';
+import { HealthAssistantPage } from './HealthAssistantPage';
 
 @Entry
 @Component
@@ -19,6 +20,13 @@ struct ModuleRouter {
       }.tabBar({
         text: '档案',
         icon: $r('app.media.note')
+      })
+
+      TabContent() {
+        HealthAssistantPage()
+      }.tabBar({
+        text: '助手',
+        icon: $r('app.media.health_icon')
       })
 
       TabContent() {
