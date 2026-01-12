@@ -7,6 +7,8 @@ import UserProfileService from '../services/UserProfileService';
 @Entry
 @Component
 struct LoginPage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
   @State phoneNumber: string = '';
   @State password: string = '';
   @State isLoading: boolean = false;
@@ -119,16 +121,19 @@ struct LoginPage {
     Column() {
       // APP Logo区
       Column() {
-        Image($r('app.media.startIcon'))
-          .width(80)
-          .height(80)
-          .margin({ top: 80, bottom: 20 })
+        Image($r('app.media.appicon'))
+          .width($r('app.float.app_logo_size'))
+          .height($r('app.float.app_logo_size'))
+          .margin({
+            top: $r('app.float.app_logo_margin_top'),
+            bottom: $r('app.float.app_logo_margin_bottom')
+          })
 
         Text('欢迎登录')
-          .fontSize(28)
+          .fontSize($r('app.float.welcome_font_size'))
           .fontWeight(FontWeight.Bold)
-          .fontColor('#182431')
-          .margin({ bottom: 8 })
+          .fontColor($r('app.color.welcome_font_color'))
+          .margin({ bottom: $r('app.float.welcome_margin_bottom') })
 
         Text('健行无忧APP')
           .fontSize(16)
@@ -147,7 +152,7 @@ struct LoginPage {
               .height(48)
               .fontSize(16)
               .fontColor(Color.White)
-              .backgroundColor('#007DFF')
+              .backgroundColor($r('app.color.login_button_color'))
               .borderRadius(24)
               .enabled(!this.isLoading)
               .onClick(() => this.handleQuickLogin())
@@ -171,7 +176,7 @@ struct LoginPage {
 
             Divider()
               .margin({ top: 40, bottom: 20 })
-              .color('#E5E5E5')
+              .color($r('app.color.divider_color'))
 
             Text('其他登录方式')
               .fontSize(14)
@@ -184,7 +189,7 @@ struct LoginPage {
                   .width(40)
                   .height(40)
                   .borderRadius(20)
-                  .backgroundColor('#F1F3F5')
+                  .backgroundColor($r('app.color.default_window_background'))
                   .padding(8)
 
                 Text('账号登录')
@@ -215,7 +220,7 @@ struct LoginPage {
                 })
 
               Divider()
-                .color('#E5E5E5')
+                .color($r('app.color.divider_color'))
             }
             .margin({ bottom: 20 })
 
@@ -244,7 +249,7 @@ struct LoginPage {
               .width('100%')
 
               Divider()
-                .color('#E5E5E5')
+                .color($r('app.color.divider_color'))
             }
             .margin({ bottom: 30 })
 
@@ -253,14 +258,14 @@ struct LoginPage {
               .height(48)
               .fontSize(16)
               .fontColor(Color.White)
-              .backgroundColor('#007DFF')
+              .backgroundColor($r('app.color.login_button_color'))
               .borderRadius(24)
               .enabled(!this.isLoading)
               .onClick(() => this.handlePasswordLogin())
 
             Text('返回一键登录')
               .fontSize(14)
-              .fontColor('#007DFF')
+              .fontColor($r('app.color.login_button_color'))
               .margin({ top: 20 })
               .onClick(() => {
                 this.showPasswordLogin = false;
@@ -276,6 +281,10 @@ struct LoginPage {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#F1F3F5')
+    .backgroundColor($r('app.color.default_window_background'))
+    .padding({
+      top: `${this.topRectHeight}px`,
+      bottom: `${this.bottomRectHeight}px`
+    })
   }
 }

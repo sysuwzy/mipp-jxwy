@@ -1,6 +1,7 @@
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 import DatabaseManager from '../backend/DatabaseManager';
 import SessionManager from '../services/SessionManager';
@@ -43,13 +44,41 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err) => {
-      if (err.code) {
-        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
-        return;
-      }
-      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
-    });
+    try {
+      windowStage.getMainWindow((err: BusinessError<void>, windowClass) => {
+        if (err.code) {
+          hilog.info(0x0000, 'EntryAbility', '%{public}s', 'getMainWindow failed');
+          return;
+        }
+        windowClass.setWindowLayoutFullScreen(true).catch((err: BusinessError) => {
+          hilog.error(0x0000, 'EntryAbility',
+            `setWindowLayoutFullScreen failed. code=${err.code}, message=${err.message}`);
+        })
+
+        let type = window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR;
+        let avoidArea = windowClass.getWindowAvoidArea(type);
+        let bottomRectHeight = avoidArea.bottomRect.height;
+        AppStorage.setOrCreate('bottomRectHeight', bottomRectHeight);
+
+        type = window.AvoidAreaType.TYPE_SYSTEM;
+        avoidArea = windowClass.getWindowAvoidArea(type);
+        let topRectHeight = avoidArea.topRect.height;
+        AppStorage.setOrCreate('topRectHeight', topRectHeight);
+      })
+
+      windowStage.loadContent('pages/Index', (err, data) => {
+        if (err.code) {
+          hilog.error(0x0000, 'EntryAbility', 'Failed to load the content. Cause: %{public}s',
+            JSON.stringify(err) ?? '');
+          return;
+        }
+        hilog.info(0x0000, 'EntryAbility', 'Succeeded in loading the content. Data: %{public}s',
+          JSON.stringify(data) ?? '');
+      });
+    } catch (error) {
+      let err = error as BusinessError;
+      hilog.error(0x0000, 'EntryAbility', `onWindowStageCreate failed. code=${err.code}, message=${err.message}`);
+    }
   }
 
   onWindowStageDestroy(): void {

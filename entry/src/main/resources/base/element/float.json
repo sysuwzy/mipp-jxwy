@@ -3,6 +3,27 @@
     {
       "name": "page_text_font_size",
       "value": "50fp"
+    },
+
+    {
+      "name": "app_logo_size",
+      "value": "80vp"
+    },
+    {
+      "name": "app_logo_margin_top",
+      "value": "80vp"
+    },
+    {
+      "name": "app_logo_margin_bottom",
+      "value": "20vp"
+    },
+    {
+      "name": "welcome_font_size",
+      "value": "28fp"
+    },
+    {
+      "name": "welcome_margin_bottom",
+      "value": "8vp"
     }
   ]
 }

@@ -28,6 +28,7 @@ interface OptionType {
 @Entry
 @Component
 export struct Index {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @State currentTab: number = 0;
   @State archiveList: HealthRecord[] = [];
   @State selectedArchive: HealthRecord | null = null;
@@ -213,6 +214,10 @@ export struct Index {
     }
     .width('100%')
     .height('100%')
+    .padding({
+      top: `${this.topRectHeight}px`
+    })
+    .backgroundColor('#5FCCC4')
   }
 
   @Builder

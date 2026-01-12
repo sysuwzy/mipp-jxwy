@@ -16,6 +16,7 @@ interface ReminderItem { id: number; title: string; timeDisplay: string; }
 
 @Component
 export struct HealthAssistantPage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @State reminders: ReminderItem[] = [];
   @State aiResult: string = "正在连线 AI 专家，请稍候...";
   @State isThinking: boolean = true;
@@ -203,7 +204,10 @@ export struct HealthAssistantPage {
           }.width('100%').padding(15).backgroundColor(Color.White).borderRadius(15).margin({ bottom: 30 })
         }
       }.width('92%').layoutWeight(1)
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+    }.width('100%').height('100%')
+    .padding({
+      top: `${this.topRectHeight}px`
+    }).backgroundColor('#F1F3F5')
   }
 }
 

@@ -6,6 +6,7 @@ import { HealthPortraitData, HealthIndicator, AnalysisReport } from '../models/H
 @Entry
 @Component
 struct HealthPortraitPage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @State isAnalyzing: boolean = true;
   @State analysisProgress: number = 0;
   @State rotationAngle: number = 0;
@@ -358,6 +359,7 @@ struct HealthPortraitPage {
             .margin({ bottom: 12 })
 
           Column() {
+            // 模拟来自AI模块分析
             this.HealthTip('保持规律作息，每天睡眠7-8小时')
             this.HealthTip('每周进行3-5次有氧运动，每次30分钟以上')
             this.HealthTip('均衡饮食，多吃蔬菜水果，少油少盐')
@@ -540,12 +542,12 @@ struct HealthPortraitPage {
   // 获取报告图标
   private getReportIcon(icon: string): Resource {
     const iconMap: Record<string, Resource> = {
-      'heart': $r('app.media.startIcon'),
-      'weight': $r('app.media.startIcon'),
-      'oxygen': $r('app.media.startIcon'),
-      'sugar': $r('app.media.startIcon')
+      'heart': $r('app.media.note'),
+      'weight': $r('app.media.note'),
+      'oxygen': $r('app.media.note'),
+      'sugar': $r('app.media.note')
     };
-    return iconMap[icon] || $r('app.media.startIcon');
+    return iconMap[icon] || $r('app.media.note');
   }
 
   // 获取报告颜色
@@ -586,5 +588,9 @@ struct HealthPortraitPage {
     }
     .width('100%')
     .height('100%')
+    .padding({
+      top: `${this.topRectHeight}px`
+    })
+    .backgroundColor($r('app.color.default_status_bar_background'))
   }
 }

@@ -8,6 +8,7 @@ import { UserProfileForm } from '../models/UserModel';
 @Entry
 @Component
 export struct HomePage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @State healthData: HealthData | null = null;
   @State isLoading: boolean = true;
   @State currentTabIndex: number = 0;
@@ -479,9 +480,9 @@ export struct HomePage {
     }
     .width('100%')
     .height('100%')
-    .linearGradient({
-      direction: GradientDirection.Bottom,
-      colors: [['#00d6b8', 0.0],['#F1F3F5', 0.6],['#F1F3F5', 1.0]]
+    .padding({
+      top: `${this.topRectHeight}px`
     })
+    .backgroundColor($r('app.color.default_status_bar_background'))
   }
 }

@@ -6,6 +6,7 @@ import { HealthAssistantPage } from './HealthAssistantPage';
 @Entry
 @Component
 struct ModuleRouter {
+  @StorageLink('bottomRectHeight') bottomRectHeight: number = 0;
   build() {
     Tabs({ barPosition: BarPosition.End }) {
       TabContent() {
@@ -38,5 +39,8 @@ struct ModuleRouter {
     }
     .width('100%')
     .height('100%')
+    .padding({
+      bottom: `${0.5*this.bottomRectHeight}px`
+    })
   }
 }

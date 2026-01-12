@@ -6,6 +6,7 @@ import { UserProfileForm, WeightScaleData } from '../models/UserModel';
 @Entry()
 @Component
 struct EditProfile {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @StorageProp("userProfileForm") userProfileForm: UserProfileForm = {
     name: '张三',
     height: 181,
@@ -517,5 +518,9 @@ struct EditProfile {
     }
     .width('100%')
     .height('100%')
+    .padding({
+      top: `${this.topRectHeight}px`
+    })
+    .backgroundColor($r('app.color.default_status_bar_background'))
   }
 }

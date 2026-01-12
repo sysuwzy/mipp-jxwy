@@ -2,7 +2,28 @@
   "color": [
     {
       "name": "start_window_background",
-      "value": "#FFFFFF"
+      "value": "#5FCCC4"
+    },
+    {
+      "name": "default_status_bar_background",
+      "value": "#5FCCC4"
+    },
+    {
+      "name": "default_window_background",
+      "value": "#F1F3F5"
+    },
+
+    {
+      "name": "welcome_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "login_button_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "divider_color",
+      "value": "#E5E5E5"
     }
   ]
 }

@@ -8,6 +8,7 @@ import { UserProfileForm } from '../models/UserModel';
 @Entry
 @Component
 export struct ProfilePage {
+  @StorageLink('topRectHeight') topRectHeight: number = 0;
   @State currentTabIndex: number = 4;
   @State appInfo: AppInfo | null = null;
   @State cardStyle: 'default' | 'compact' = 'compact';
@@ -236,11 +237,15 @@ export struct ProfilePage {
       }
       .width('100%')
       .height('100%')
+      .backgroundColor('#F5F5F5')
     }
     .width('100%')
     .height('100%')
     .layoutWeight(1)
     .scrollBar(BarState.Off)
-    .backgroundColor('#F5F5F5')
+    .padding({
+      top: `${this.topRectHeight}px`
+    })
+    .backgroundColor($r('app.color.default_status_bar_background'))
   }
 }

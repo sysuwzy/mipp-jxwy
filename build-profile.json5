@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\wang\\.ohos\\config\\default_jianxingwuyou_oHmvd6KWpHHWboAmSJfSD6Nw5z5c1eNh35hLspqV-28=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B771002F518E7855EF0C8D770D2F65CBBAB0FB1717D85DDEB121D54F0E45D5AE083EFA3997A59EB",
+          "profile": "C:\\Users\\wang\\.ohos\\config\\default_jianxingwuyou_oHmvd6KWpHHWboAmSJfSD6Nw5z5c1eNh35hLspqV-28=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\wang\\.ohos\\config\\default_jianxingwuyou_oHmvd6KWpHHWboAmSJfSD6Nw5z5c1eNh35hLspqV-28=.p12",
+          "storePassword": "0000001B913F246E20BBECBC836D4BD7CBC7F7CA055A96C55A612C2063F7FBD9C430B92A00601D57C7CF9E"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
